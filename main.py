@@ -2,6 +2,18 @@ from pytube import YouTube
 import os
 import platform
 
+
+# to install required packages
+def packetInstaller():
+    packets = ["pytube"]
+
+    if platform.system() == "Windows":
+        os.system('cmd /c "pip install ' + " ".join(packets) + '"')
+    else:
+        os.system("pip install " + " ".join(packets))
+
+
+#takes the Desktop directory of the OS to save video.
 def desktopDirectory():
     desktop =""
     if platform.system() == "Windows":
@@ -11,6 +23,7 @@ def desktopDirectory():
 
     return desktop
 
+# Video downloader
 def videoDownloander(link):
 
     SAVE_PATH = desktopDirectory()
@@ -28,8 +41,7 @@ def videoDownloander(link):
 
         try:
             # downloading the video
-            stream = yt.streams.first()
-            stream.download(SAVE_PATH)
+            yt.streams.get_highest_resolution().download(SAVE_PATH)
         except:
             print("Some Error!")
     print('Task Completed!')
@@ -38,6 +50,7 @@ def videoDownloander(link):
 
 
 if __name__ == '__main__':
+    packetInstaller()
     list =[]
     link=""
     while True:
