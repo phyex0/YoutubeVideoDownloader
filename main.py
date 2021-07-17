@@ -33,6 +33,7 @@ def videoDownloander(link):
 
             # object creation using YouTube
             # which was imported in the beginning
+            print("Track :"+i)
             yt = YouTube(i)
         except:
 
@@ -41,7 +42,7 @@ def videoDownloander(link):
 
         try:
             # downloading the video
-            yt.streams.get_highest_resolution().download(SAVE_PATH)
+            yt.streams.first().download(SAVE_PATH)
         except:
             print("Some Error!")
     print('Task Completed!')
@@ -59,6 +60,7 @@ if __name__ == '__main__':
             break
         list.append(link)
     if len(list) > 0:
+        print("Task begins. Please be patient...")
         videoDownloander(list)
 
 
