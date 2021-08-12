@@ -13,15 +13,16 @@ def packetInstaller():
         os.system("pip install " + " ".join(packets))
 
 
-#takes the Desktop directory of the OS to save video.
+# takes the Desktop directory of the OS to save video.
 def desktopDirectory():
-    desktop =""
+    desktop = ""
     if platform.system() == "Windows":
-        desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+        desktop = os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop")
     else:
-        desktop = os.path.join(os.path.join(os.path.expanduser('~')), 'Desktop')
+        desktop = os.path.join(os.path.join(os.path.expanduser("~")), "Desktop")
 
     return desktop
+
 
 # Video downloader
 def videoDownloander(link):
@@ -33,7 +34,7 @@ def videoDownloander(link):
 
             # object creation using YouTube
             # which was imported in the beginning
-            print("Track :"+i)
+            print("Track :" + i)
             yt = YouTube(i)
         except:
 
@@ -45,22 +46,18 @@ def videoDownloander(link):
             yt.streams.first().download(SAVE_PATH)
         except:
             print("Some Error!")
-    print('Task Completed!')
+    print("Task Completed!")
 
 
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     packetInstaller()
-    list =[]
-    link=""
+    list = []
+    link = ""
     while True:
-        link= input("Enter Youtube Links. Press -1 to quit")
+        link = input("Enter Youtube Links. Press -1 to quit")
         if link == "-1":
             break
         list.append(link)
     if len(list) > 0:
         print("Task begins. Please be patient...")
         videoDownloander(list)
-
-
